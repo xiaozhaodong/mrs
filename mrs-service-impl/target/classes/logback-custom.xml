@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>mrs-service</contextName>
+    <!-- ================================ 文件日志(同步)输出============================ -->
+    <springProperty scope="context" name="LOG_PATH" source="logback.path"/>
+    <!-- 业务日志，开发环境使用 -->
+    <appender name="MRS_SERVICE_ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/mrs-service-error.log</file>
+        <append>true</append>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/mrs-service-error.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxFileSize>50MB</maxFileSize>
+        </rollingPolicy>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <encoder>
+            <pattern>%date %level [%thread] %logger{36} [%file : %line] - %X{traceId}%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="MRS_SERVICE_ALL_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/mrs-service-all.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/mrs-service-all.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxFileSize>50MB</maxFileSize>
+        </rollingPolicy>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%date %level [%thread] %logger{36} [%file : %line] - %X{traceId}%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 控制台日志，开发阶段使用 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%highlight(%thread)] %-5level %boldYellow(%logger{36}) [%boldGreen(%file : %line)] - %X{traceId}%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 下面为具体日志配置 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="MRS_SERVICE_ALL_LOG"/>
+    </root>
+
+    <logger name="com.newland.mrs" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="MRS_SERVICE_ALL_LOG"/>
+        <appender-ref ref="MRS_SERVICE_ERROR_LOG"/>
+    </logger>
+
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="MRS_SERVICE_ERROR_LOG"/>
+    </logger>
+
+</configuration> 

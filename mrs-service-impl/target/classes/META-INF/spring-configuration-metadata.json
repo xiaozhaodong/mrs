@@ -1,0 +1,222 @@
+{
+  "groups": [
+    {
+      "name": "mrs.redis",
+      "type": "com.newland.mrs.impl.config.redis.RedisProperties",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties"
+    },
+    {
+      "name": "mrs.rocket",
+      "type": "com.newland.mrs.impl.config.mq.RocketMqProperties",
+      "sourceType": "com.newland.mrs.impl.config.mq.RocketMqProperties"
+    },
+    {
+      "name": "mrs.system",
+      "type": "com.newland.mrs.impl.config.MrsProperties",
+      "sourceType": "com.newland.mrs.impl.config.MrsProperties"
+    },
+    {
+      "name": "spring.datasource.druid",
+      "type": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "logback.path",
+      "type": "java.lang.String",
+      "description": "Description for logback.path."
+    },
+    {
+      "name": "mrs.redis.address",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties"
+    },
+    {
+      "name": "mrs.redis.connection-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "mrs.redis.max-attempts",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "mrs.redis.max-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "mrs.redis.max-total",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "mrs.redis.password",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties"
+    },
+    {
+      "name": "mrs.redis.redis-root-dir",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties"
+    },
+    {
+      "name": "mrs.redis.so-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.redis.RedisProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "mrs.rocket.instance-name",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.mq.RocketMqProperties"
+    },
+    {
+      "name": "mrs.rocket.name-address",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.mq.RocketMqProperties"
+    },
+    {
+      "name": "mrs.rocket.producer-group",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.mq.RocketMqProperties"
+    },
+    {
+      "name": "mrs.rocket.retry-times-when-send-failed",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.mq.RocketMqProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "mrs.rocket.vip-channel-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.newland.mrs.impl.config.mq.RocketMqProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "mrs.system.invoker-md5",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "com.newland.mrs.impl.config.MrsProperties"
+    },
+    {
+      "name": "mrs.system.rule-nos",
+      "type": "java.util.List<java.lang.String>",
+      "description": "启用的场景规则编号",
+      "sourceType": "com.newland.mrs.impl.config.MrsProperties"
+    },
+    {
+      "name": "spring.datasource.druid.decrypt",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.decrypt-key",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": ""
+    },
+    {
+      "name": "spring.datasource.druid.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.filters",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.initial-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.max-active",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": 100
+    },
+    {
+      "name": "spring.datasource.druid.max-pool-prepared-statement-per-connection-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.max-wait",
+      "type": "java.lang.Long",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.min-evictable-idle-time-millis",
+      "type": "java.lang.Long",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.min-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.password",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.pool-prepared-statements",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.datasource.druid.test-on-borrow",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.datasource.druid.test-on-return",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.datasource.druid.test-while-idle",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.datasource.druid.time-between-eviction-runs-millis",
+      "type": "java.lang.Long",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.url",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.username",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.validation-query",
+      "type": "java.lang.String",
+      "sourceType": "com.newland.mrs.impl.config.db.DruidDataSourceProperties"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newland.mrs.persist.mapper.MrsRuleDetailMapper">
+  <resultMap id="BaseResultMap" type="com.newland.mrs.persist.model.MrsRuleDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="config_id" jdbcType="BIGINT" property="configId" />
+    <result column="rule_group" jdbcType="VARCHAR" property="ruleGroup" />
+    <result column="rule_no" jdbcType="VARCHAR" property="ruleNo" />
+    <result column="rule_code" jdbcType="VARCHAR" property="ruleCode" />
+    <result column="rule_name" jdbcType="VARCHAR" property="ruleName" />
+    <result column="rule_context" jdbcType="VARCHAR" property="ruleContext" />
+    <result column="rule_desc" jdbcType="VARCHAR" property="ruleDesc" />
+    <result column="out_data_sign" jdbcType="CHAR" property="outDataSign" />
+    <result column="out_bean_name" jdbcType="VARCHAR" property="outBeanName" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+    <result column="enable" jdbcType="CHAR" property="enable" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, config_id, rule_group, rule_no, rule_code, rule_name, rule_context, rule_desc, 
+    out_data_sign, out_bean_name, priority, enable, remark, create_user, update_user
+  </sql>
+  <select id="selectByExample" parameterType="com.newland.mrs.persist.model.MrsRuleDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mrs_rule_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mrs_rule_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mrs_rule_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.newland.mrs.persist.model.MrsRuleDetailExample">
+    delete from mrs_rule_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.newland.mrs.persist.model.MrsRuleDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mrs_rule_detail (config_id, rule_group, rule_no, 
+      rule_code, rule_name, rule_context, 
+      rule_desc, out_data_sign, out_bean_name, 
+      priority, enable, remark, 
+      create_user, update_user)
+    values (#{configId,jdbcType=BIGINT}, #{ruleGroup,jdbcType=VARCHAR}, #{ruleNo,jdbcType=VARCHAR}, 
+      #{ruleCode,jdbcType=VARCHAR}, #{ruleName,jdbcType=VARCHAR}, #{ruleContext,jdbcType=VARCHAR}, 
+      #{ruleDesc,jdbcType=VARCHAR}, #{outDataSign,jdbcType=CHAR}, #{outBeanName,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=INTEGER}, #{enable,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newland.mrs.persist.model.MrsRuleDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mrs_rule_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        config_id,
+      </if>
+      <if test="ruleGroup != null">
+        rule_group,
+      </if>
+      <if test="ruleNo != null">
+        rule_no,
+      </if>
+      <if test="ruleCode != null">
+        rule_code,
+      </if>
+      <if test="ruleName != null">
+        rule_name,
+      </if>
+      <if test="ruleContext != null">
+        rule_context,
+      </if>
+      <if test="ruleDesc != null">
+        rule_desc,
+      </if>
+      <if test="outDataSign != null">
+        out_data_sign,
+      </if>
+      <if test="outBeanName != null">
+        out_bean_name,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="enable != null">
+        enable,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        #{configId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleGroup != null">
+        #{ruleGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleNo != null">
+        #{ruleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleCode != null">
+        #{ruleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleName != null">
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleContext != null">
+        #{ruleContext,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDesc != null">
+        #{ruleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="outDataSign != null">
+        #{outDataSign,jdbcType=CHAR},
+      </if>
+      <if test="outBeanName != null">
+        #{outBeanName,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.newland.mrs.persist.model.MrsRuleDetailExample" resultType="java.lang.Long">
+    select count(*) from mrs_rule_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mrs_rule_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.configId != null">
+        config_id = #{record.configId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ruleGroup != null">
+        rule_group = #{record.ruleGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleNo != null">
+        rule_no = #{record.ruleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleCode != null">
+        rule_code = #{record.ruleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleName != null">
+        rule_name = #{record.ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleContext != null">
+        rule_context = #{record.ruleContext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleDesc != null">
+        rule_desc = #{record.ruleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outDataSign != null">
+        out_data_sign = #{record.outDataSign,jdbcType=CHAR},
+      </if>
+      <if test="record.outBeanName != null">
+        out_bean_name = #{record.outBeanName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null">
+        priority = #{record.priority,jdbcType=INTEGER},
+      </if>
+      <if test="record.enable != null">
+        enable = #{record.enable,jdbcType=CHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mrs_rule_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      config_id = #{record.configId,jdbcType=BIGINT},
+      rule_group = #{record.ruleGroup,jdbcType=VARCHAR},
+      rule_no = #{record.ruleNo,jdbcType=VARCHAR},
+      rule_code = #{record.ruleCode,jdbcType=VARCHAR},
+      rule_name = #{record.ruleName,jdbcType=VARCHAR},
+      rule_context = #{record.ruleContext,jdbcType=VARCHAR},
+      rule_desc = #{record.ruleDesc,jdbcType=VARCHAR},
+      out_data_sign = #{record.outDataSign,jdbcType=CHAR},
+      out_bean_name = #{record.outBeanName,jdbcType=VARCHAR},
+      priority = #{record.priority,jdbcType=INTEGER},
+      enable = #{record.enable,jdbcType=CHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newland.mrs.persist.model.MrsRuleDetail">
+    update mrs_rule_detail
+    <set>
+      <if test="configId != null">
+        config_id = #{configId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleGroup != null">
+        rule_group = #{ruleGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleNo != null">
+        rule_no = #{ruleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleCode != null">
+        rule_code = #{ruleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleName != null">
+        rule_name = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleContext != null">
+        rule_context = #{ruleContext,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDesc != null">
+        rule_desc = #{ruleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="outDataSign != null">
+        out_data_sign = #{outDataSign,jdbcType=CHAR},
+      </if>
+      <if test="outBeanName != null">
+        out_bean_name = #{outBeanName,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        enable = #{enable,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newland.mrs.persist.model.MrsRuleDetail">
+    update mrs_rule_detail
+    set config_id = #{configId,jdbcType=BIGINT},
+      rule_group = #{ruleGroup,jdbcType=VARCHAR},
+      rule_no = #{ruleNo,jdbcType=VARCHAR},
+      rule_code = #{ruleCode,jdbcType=VARCHAR},
+      rule_name = #{ruleName,jdbcType=VARCHAR},
+      rule_context = #{ruleContext,jdbcType=VARCHAR},
+      rule_desc = #{ruleDesc,jdbcType=VARCHAR},
+      out_data_sign = #{outDataSign,jdbcType=CHAR},
+      out_bean_name = #{outBeanName,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=INTEGER},
+      enable = #{enable,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
